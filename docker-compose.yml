@@ -1,0 +1,41 @@
+version: '3'
+services:
+  db1:
+    image: cockroachdb/cockroach
+    ports: 
+      - 8080:8080
+      - 26257:26257 # for sql connection
+    volumes:
+      - ./data/db1:/cockroach/cockroach-data
+    command: start --insecure
+  db2:
+    image: cockroachdb/cockroach
+    ports: 
+      - 8081:8080
+    volumes:
+      - ./data/db2:/cockroach/cockroach-data
+    command: start --insecure --join db1
+  db3:
+    image: cockroachdb/cockroach
+    ports: 
+      - 8082:8080
+    volumes:
+      - ./data/db3:/cockroach/cockroach-data
+    command: start --insecure --join db1
+  prometheus:
+    image: prom/prometheus
+    ports:
+      - 9090:9090
+    volumes:
+      - ./prometheus:/etc/prometheus
+      - ./data/prometheus:/prometheus-data
+  grafana:
+    image: grafana/grafana
+    ports: 
+      - 3000:3000
+    volumes:
+      - ./grafana:/var/lib/grafana/dashboards
+    environment:
+      - GF_DASHBOARDS_JSON_ENABLED=true
+
+

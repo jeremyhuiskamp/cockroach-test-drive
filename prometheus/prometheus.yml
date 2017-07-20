@@ -19,3 +19,6 @@ scrape_configs:
     - targets: ['db1:8080', 'db2:8080', 'db3:8080']
       labels:
         cluster: 'my-cockroachdb-cluster'
+  - job_name: prometheus
+    static_configs:
+    - targets: ['localhost:9090']

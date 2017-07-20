@@ -6,7 +6,7 @@ Steps:
   - [x] 3 identical cockroach nodes with persistent volumes on host
   - [ ] golang microservice using `lib/pq` doing continuous reads and writes
   - [x] prometheus monitoring database and service nodes
-  - [ ] grafana graphing everything
+  - [x] grafana graphing everything
 - [ ] control mechanism to stop/start db nodes on demand
   - [ ] sometimes regaining persistent volumes
   - [ ] sometimes losing persistent volumes

@@ -34,8 +34,8 @@ services:
     ports: 
       - 3000:3000
     volumes:
-      - ./grafana:/var/lib/grafana/dashboards
-    environment:
-      - GF_DASHBOARDS_JSON_ENABLED=true
+      # This is actually to persist the configuration
+      # that we have to set up manually on first run:
+      - ./data/grafana:/var/lib/grafana
 
 

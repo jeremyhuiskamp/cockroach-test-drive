@@ -16,3 +16,7 @@ Steps:
 ## Questions
 
 ### How easy is it to write unit/integration tests against Cockroach?
+
+Check out github.com/cockroachdb/cockroach-go/testserver
+
+### How do we make the Postgres client aware of multiple servers?

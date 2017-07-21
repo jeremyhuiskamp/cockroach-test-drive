@@ -39,5 +39,7 @@ services:
       - ./data/grafana:/var/lib/grafana
   client:
     build: ./client
+    ports:
+      - 8079:8079
 
 

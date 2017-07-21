@@ -1,7 +1,7 @@
 FROM golang:alpine
 
 WORKDIR /go/src/app
-COPY . .
+COPY ./src/client .
 
 RUN go-wrapper install
 

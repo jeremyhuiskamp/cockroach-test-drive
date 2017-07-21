@@ -37,5 +37,7 @@ services:
       # This is actually to persist the configuration
       # that we have to set up manually on first run:
       - ./data/grafana:/var/lib/grafana
+  client:
+    build: ./client
 
 

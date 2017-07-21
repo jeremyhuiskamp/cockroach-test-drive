@@ -20,3 +20,6 @@ Steps:
 Check out github.com/cockroachdb/cockroach-go/testserver
 
 ### How do we make the Postgres client aware of multiple servers?
+
+- https://www.cockroachlabs.com/docs/stable/manual-deployment.html#step-5-set-up-haproxy-load-balancers
+- https://github.com/cockroachdb/docs/issues/978

@@ -14,6 +14,18 @@
   revision = "0a4f71a498b7c4812f64969510bcb4eca251e33a"
 
 [[projects]]
+  branch = "master"
+  name = "github.com/lib/pq"
+  packages = [".","oid"]
+  revision = "dd1fe2071026ce53f36a39112e645b4d4f5793a4"
+
+[[projects]]
+  name = "github.com/mattes/migrate"
+  packages = [".","database","source"]
+  revision = "035c07716cd373d88456ec4d701402df52584cb4"
+  version = "v3.0.1"
+
+[[projects]]
   name = "github.com/matttproud/golang_protobuf_extensions"
   packages = ["pbutil"]
   revision = "3247c84500bff8d9fb6d579d800f20b3e091582c"
@@ -46,6 +58,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "4864565d7f00fdf85c9197d5701e63d6138b349bfb82e980ef97a140062c401d"
+  inputs-digest = "525b6bcbc4d9616983d7e5243fc0bf895d3bf9da0d388214aff7d00ecaddea51"
   solver-name = "gps-cdcl"
   solver-version = 1

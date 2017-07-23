@@ -1,5 +1,7 @@
 FROM golang:alpine
 
+COPY ./migrate /migrate
+
 WORKDIR /go/src/app
 COPY ./src/client .
 

@@ -9,9 +9,21 @@
 
 [[projects]]
   branch = "master"
+  name = "github.com/cockroachdb/cockroach-go"
+  packages = ["crdb","testserver"]
+  revision = "9d7a031b30cb0a69f68aecd0a9aad8e5c7e136d1"
+
+[[projects]]
+  branch = "master"
   name = "github.com/golang/protobuf"
   packages = ["proto"]
   revision = "0a4f71a498b7c4812f64969510bcb4eca251e33a"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/jmoiron/sqlx"
+  packages = [".","reflectx"]
+  revision = "d9bd385d68c068f1fabb5057e3dedcbcbb039d0f"
 
 [[projects]]
   branch = "master"
@@ -21,7 +33,7 @@
 
 [[projects]]
   name = "github.com/mattes/migrate"
-  packages = [".","database","source"]
+  packages = [".","database","database/postgres","source","source/file"]
   revision = "035c07716cd373d88456ec4d701402df52584cb4"
   version = "v3.0.1"
 
@@ -58,6 +70,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "525b6bcbc4d9616983d7e5243fc0bf895d3bf9da0d388214aff7d00ecaddea51"
+  inputs-digest = "88c8e9470aef5599a595a2e3e3f30c48725d9c53adafb13b32ae268a159830b6"
   solver-name = "gps-cdcl"
   solver-version = 1

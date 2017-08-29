@@ -63,7 +63,7 @@ func (r AccountRepository) Deposit(amount uint, acct Account) error {
 
 func (r AccountRepository) Withdraw(amount uint, acct Account) error {
 	return crdb.ExecuteTx(r.db.DB, func(tx *sql.Tx) error {
-		_, err := tx.Exec("insert into withdrawal (account, amount) values ($1, $2",
+		_, err := tx.Exec("insert into withdrawal (account, amount) values ($1, $2)",
 			acct.ID, amount)
 		// TODO: cleaner handling for accounts that don't exist?
 		if err != nil {

@@ -9,25 +9,44 @@ import (
 	_ "github.com/mattes/migrate/source/file"
 )
 
-func TestDeposit(t *testing.T) {
+func TestDepositAndWithdraw(t *testing.T) {
 	withTestDB(t, func(accts *AccountRepository) {
+		getBalance := func(id int) uint {
+			acct, err := accts.GetAccount(id)
+			if err != nil {
+				t.Fatal(err)
+			}
+			return acct.Balance()
+		}
+
 		acct, err := accts.OpenAccount()
 		if err != nil {
 			t.Fatal(err)
 		}
+
+		err = accts.Withdraw(50, *acct)
+		if err == nil {
+			t.Fatal("shouldn't be able to overdraft")
+		}
+		// TODO: assert on error type/content
+		t.Logf("anticipated error from overdrafting: %#v", err)
 
 		err = accts.Deposit(50, *acct)
 		if err != nil {
 			t.Fatal(err)
 		}
 
-		acct, err = accts.GetAccount(acct.ID)
+		if balance := getBalance(acct.ID); balance != 50 {
+			t.Fatalf("unexpected balance: %d", balance)
+		}
+
+		err = accts.Withdraw(10, *acct)
 		if err != nil {
 			t.Fatal(err)
 		}
 
-		if acct.Balance() != 50 {
-			t.Fatalf("unexpected balance: %d", acct.Balance())
+		if balance := getBalance(acct.ID); balance != 40 {
+			t.Fatalf("unexpected balance: %d", balance)
 		}
 	})
 }

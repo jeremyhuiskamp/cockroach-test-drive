@@ -27,23 +27,23 @@ func NewAccountRepository(db *sql.DB) *AccountRepository {
 	return &AccountRepository{sqlx.NewDb(db, "postgres")}
 }
 
-func (r AccountRepository) OpenAccount() (*Account, error) {
+func (r AccountRepository) OpenAccount() (Account, error) {
 	var a Account
 	err := r.db.Get(&a, "insert into account (amount) values (0) returning *")
-	return &a, err
+	return a, err
 }
 
-func (r AccountRepository) GetAccount(id int) (*Account, error) {
+func (r AccountRepository) GetAccount(id int) (Account, error) {
 	var a Account
 	err := r.db.Get(&a, "select * from account where id = $1", id)
-	return &a, err
+	return a, err
 }
 
-func (r AccountRepository) FindRandomAccount() (*Account, error) {
+func (r AccountRepository) FindRandomAccount() (Account, error) {
 	var a Account
 	// Will not scale beyond tables that can easily be held in memory:
 	err := r.db.Get(&a, "select * from account order by random() limit 1")
-	return &a, err
+	return a, err
 }
 
 func (r AccountRepository) Deposit(amount uint, acct Account) error {
@@ -86,15 +86,15 @@ func (r AccountRepository) Transfer(amount uint, from, to Account) error {
 			return err
 		}
 
-		_, err = tx.Exec("upate account set amount = amount - $1 where id = $2",
-			from.ID, amount)
+		_, err = tx.Exec("update account set amount = amount - $1 where id = $2",
+			amount, from.ID)
 		// TODO: cleaner handling for overdraft?
 		if err != nil {
 			return err
 		}
 
 		_, err = tx.Exec("update account set amount = amount + $1 where id = $2",
-			to.ID, amount)
+			amount, to.ID)
 		return err
 	})
 }

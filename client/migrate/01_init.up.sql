@@ -4,9 +4,6 @@ CREATE TABLE account (
 	amount INT CHECK (amount >= 0)
 );
 
--- create a bunch of empty accounts to start with:
-INSERT INTO account (amount) SELECT 0 FROM generate_series(1,500);
-
 -- transfer is a log of all transfer between accounts
 CREATE TABLE transfer (
 	id SERIAL PRIMARY KEY,

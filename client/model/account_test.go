@@ -107,7 +107,7 @@ func TestFindRandomAccount(t *testing.T) {
 			if err != nil {
 				t.Fatal(err)
 			}
-			foundIDs[acct.ID] += 1
+			foundIDs[acct.ID]++
 		}
 
 		if len(foundIDs) != numAccts {
